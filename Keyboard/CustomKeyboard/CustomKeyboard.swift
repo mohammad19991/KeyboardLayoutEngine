@@ -132,7 +132,7 @@ public class CustomKeyboard: UIView, KeyboardLayoutDelegate {
       keyboardLayout.uppercaseToggled,
       keyboardLayout.lowercase,
       keyboardLayout.numbers,
-      keyboardLayout.symbols,
+      keyboardLayout.symbols
     ]
 
     for layout in layouts {
@@ -346,7 +346,7 @@ public class CustomKeyboard: UIView, KeyboardLayoutDelegate {
     }
   }
 
-  public func keyboardLayout(keyboardLayout: KeyboardLayout, didTouchesEnd touches: Set<UITouch>?)  {
+  public func keyboardLayout(keyboardLayout: KeyboardLayout, didTouchesEnd touches: Set<UITouch>?) {
     invalidateBackspaceAutoDeleteModeTimer()
     invalidateBackspaceDeleteTimer()
     invalidateKeyMenuOpenTimer()

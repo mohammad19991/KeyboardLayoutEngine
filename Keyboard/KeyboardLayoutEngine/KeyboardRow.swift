@@ -72,7 +72,7 @@ public class KeyboardRow: UIView {
   public init(style: KeyboardRowStyle, characters: [AnyObject]) {
     assert(characters.filter({ !(($0 is KeyboardButton) || ($0 is KeyboardRow)) }).count <= 0)
     super.init(frame: CGRect.zero)
-    
+
     self.style = style
     self.characters = characters
 
@@ -197,6 +197,6 @@ public class KeyboardRow: UIView {
     }
 
     let hitFrame = UIEdgeInsetsInsetRect(bounds, buttonHitRangeInsets)
-    return CGRectContainsPoint(hitFrame, point)
+    return hitFrame.contains(point)
   }
 }

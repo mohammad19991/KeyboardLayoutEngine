@@ -104,7 +104,7 @@ public class CustomKeyboardLayout {
             KeyboardButton(type: .Key("U"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("I"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("O"), style: CustomKeyboardKeyButtonStyle),
-            KeyboardButton(type: .Key("P"), style: CustomKeyboardRightKeyButtonStyle),
+            KeyboardButton(type: .Key("P"), style: CustomKeyboardRightKeyButtonStyle)
           ]
         ),
         KeyboardRow(
@@ -118,7 +118,7 @@ public class CustomKeyboardLayout {
             KeyboardButton(type: .Key("H"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("J"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("K"), style: CustomKeyboardKeyButtonStyle),
-            KeyboardButton(type: .Key("L"), style: CustomKeyboardKeyButtonStyle),
+            KeyboardButton(type: .Key("L"), style: CustomKeyboardKeyButtonStyle)
           ]
         ),
         KeyboardRow(
@@ -141,7 +141,7 @@ public class CustomKeyboardLayout {
                 KeyboardButton(type: .Key("V"), style: CustomKeyboardKeyButtonStyle),
                 KeyboardButton(type: .Key("B"), style: CustomKeyboardKeyButtonStyle),
                 KeyboardButton(type: .Key("N"), style: CustomKeyboardKeyButtonStyle),
-                KeyboardButton(type: .Key("M"), style: CustomKeyboardKeyButtonStyle),
+                KeyboardButton(type: .Key("M"), style: CustomKeyboardKeyButtonStyle)
               ]
             ),
             KeyboardButton(
@@ -151,7 +151,7 @@ public class CustomKeyboardLayout {
                 compatibleWithTraitCollection: nil)),
               style: CustomKeyboardBackspaceButtonStyle,
               width: .Relative(percent: 0.115),
-              identifier: CustomKeyboardIdentifier.Backspace.rawValue),
+              identifier: CustomKeyboardIdentifier.Backspace.rawValue)
           ]
         ),
         KeyboardRow(
@@ -178,9 +178,9 @@ public class CustomKeyboardLayout {
               type: .Text("return"),
               style: CustomKeyboardReturnButtonStyle,
               width: .Relative(percent: 0.18),
-              identifier: CustomKeyboardIdentifier.Return.rawValue),
+              identifier: CustomKeyboardIdentifier.Return.rawValue)
           ]
-        ),
+        )
       ]
     )
 
@@ -199,7 +199,7 @@ public class CustomKeyboardLayout {
             KeyboardButton(type: .Key("U"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("I"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("O"), style: CustomKeyboardKeyButtonStyle),
-            KeyboardButton(type: .Key("P"), style: CustomKeyboardRightKeyButtonStyle),
+            KeyboardButton(type: .Key("P"), style: CustomKeyboardRightKeyButtonStyle)
           ]
         ),
         KeyboardRow(
@@ -213,7 +213,7 @@ public class CustomKeyboardLayout {
             KeyboardButton(type: .Key("H"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("J"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("K"), style: CustomKeyboardKeyButtonStyle),
-            KeyboardButton(type: .Key("L"), style: CustomKeyboardKeyButtonStyle),
+            KeyboardButton(type: .Key("L"), style: CustomKeyboardKeyButtonStyle)
           ]
         ),
         KeyboardRow(
@@ -236,7 +236,7 @@ public class CustomKeyboardLayout {
                 KeyboardButton(type: .Key("V"), style: CustomKeyboardKeyButtonStyle),
                 KeyboardButton(type: .Key("B"), style: CustomKeyboardKeyButtonStyle),
                 KeyboardButton(type: .Key("N"), style: CustomKeyboardKeyButtonStyle),
-                KeyboardButton(type: .Key("M"), style: CustomKeyboardKeyButtonStyle),
+                KeyboardButton(type: .Key("M"), style: CustomKeyboardKeyButtonStyle)
               ]
             ),
             KeyboardButton(
@@ -246,7 +246,7 @@ public class CustomKeyboardLayout {
                 compatibleWithTraitCollection: nil)),
               style: CustomKeyboardBackspaceButtonStyle,
               width: .Relative(percent: 0.115),
-              identifier: CustomKeyboardIdentifier.Backspace.rawValue),
+              identifier: CustomKeyboardIdentifier.Backspace.rawValue)
           ]
         ),
         KeyboardRow(
@@ -273,9 +273,9 @@ public class CustomKeyboardLayout {
               type: .Text("return"),
               style: CustomKeyboardReturnButtonStyle,
               width: .Relative(percent: 0.18),
-              identifier: CustomKeyboardIdentifier.Return.rawValue),
+              identifier: CustomKeyboardIdentifier.Return.rawValue)
           ]
-        ),
+        )
       ]
     )
 
@@ -294,7 +294,7 @@ public class CustomKeyboardLayout {
             KeyboardButton(type: .Key("u"), style: CustomKeyboardLowercaseKeyButtonStyle),
             KeyboardButton(type: .Key("i"), style: CustomKeyboardLowercaseKeyButtonStyle),
             KeyboardButton(type: .Key("o"), style: CustomKeyboardLowercaseKeyButtonStyle),
-            KeyboardButton(type: .Key("p"), style: CustomKeyboardLowercaseRightKeyButtonStyle),
+            KeyboardButton(type: .Key("p"), style: CustomKeyboardLowercaseRightKeyButtonStyle)
           ]
         ),
         KeyboardRow(
@@ -308,7 +308,7 @@ public class CustomKeyboardLayout {
             KeyboardButton(type: .Key("h"), style: CustomKeyboardLowercaseKeyButtonStyle),
             KeyboardButton(type: .Key("j"), style: CustomKeyboardLowercaseKeyButtonStyle),
             KeyboardButton(type: .Key("k"), style: CustomKeyboardLowercaseKeyButtonStyle),
-            KeyboardButton(type: .Key("l"), style: CustomKeyboardLowercaseKeyButtonStyle),
+            KeyboardButton(type: .Key("l"), style: CustomKeyboardLowercaseKeyButtonStyle)
           ]
         ),
         KeyboardRow(
@@ -331,7 +331,7 @@ public class CustomKeyboardLayout {
                 KeyboardButton(type: .Key("v"), style: CustomKeyboardLowercaseKeyButtonStyle),
                 KeyboardButton(type: .Key("b"), style: CustomKeyboardLowercaseKeyButtonStyle),
                 KeyboardButton(type: .Key("n"), style: CustomKeyboardLowercaseKeyButtonStyle),
-                KeyboardButton(type: .Key("m"), style: CustomKeyboardLowercaseKeyButtonStyle),
+                KeyboardButton(type: .Key("m"), style: CustomKeyboardLowercaseKeyButtonStyle)
               ]
             ),
             KeyboardButton(
@@ -341,7 +341,7 @@ public class CustomKeyboardLayout {
                 compatibleWithTraitCollection: nil)),
               style: CustomKeyboardBackspaceButtonStyle,
               width: .Relative(percent: 0.115),
-              identifier: CustomKeyboardIdentifier.Backspace.rawValue),
+              identifier: CustomKeyboardIdentifier.Backspace.rawValue)
           ]
         ),
         KeyboardRow(
@@ -368,9 +368,9 @@ public class CustomKeyboardLayout {
               type: .Text("return"),
               style: CustomKeyboardReturnButtonStyle,
               width: .Relative(percent: 0.18),
-              identifier: CustomKeyboardIdentifier.Return.rawValue),
+              identifier: CustomKeyboardIdentifier.Return.rawValue)
           ]
-        ),
+        )
       ]
     )
 
@@ -389,7 +389,7 @@ public class CustomKeyboardLayout {
             KeyboardButton(type: .Key("7"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("8"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("9"), style: CustomKeyboardKeyButtonStyle),
-            KeyboardButton(type: .Key("0"), style: CustomKeyboardRightKeyButtonStyle),
+            KeyboardButton(type: .Key("0"), style: CustomKeyboardRightKeyButtonStyle)
           ]
         ),
         KeyboardRow(
@@ -404,7 +404,7 @@ public class CustomKeyboardLayout {
             KeyboardButton(type: .Key("$"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("&"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("@"), style: CustomKeyboardKeyButtonStyle),
-            KeyboardButton(type: .Key("\""), style: CustomKeyboardRightKeyButtonStyle),
+            KeyboardButton(type: .Key("\""), style: CustomKeyboardRightKeyButtonStyle)
           ]
         ),
         KeyboardRow(
@@ -422,7 +422,7 @@ public class CustomKeyboardLayout {
                 KeyboardButton(type: .Key(","), style: CustomKeyboardKeyButtonStyle),
                 KeyboardButton(type: .Key("?"), style: CustomKeyboardKeyButtonStyle),
                 KeyboardButton(type: .Key("!"), style: CustomKeyboardKeyButtonStyle),
-                KeyboardButton(type: .Key("'"), style: CustomKeyboardKeyButtonStyle),
+                KeyboardButton(type: .Key("'"), style: CustomKeyboardKeyButtonStyle)
               ]
             ),
             KeyboardButton(
@@ -432,7 +432,7 @@ public class CustomKeyboardLayout {
                 compatibleWithTraitCollection: nil)),
               style: CustomKeyboardBackspaceButtonStyle,
               width: .Relative(percent: 0.115),
-              identifier: CustomKeyboardIdentifier.Backspace.rawValue),
+              identifier: CustomKeyboardIdentifier.Backspace.rawValue)
           ]
         ),
         KeyboardRow(
@@ -459,9 +459,9 @@ public class CustomKeyboardLayout {
               type: .Text("return"),
               style: CustomKeyboardReturnButtonStyle,
               width: .Relative(percent: 0.18),
-              identifier: CustomKeyboardIdentifier.Return.rawValue),
+              identifier: CustomKeyboardIdentifier.Return.rawValue)
           ]
-        ),
+        )
       ]
     )
 
@@ -480,7 +480,7 @@ public class CustomKeyboardLayout {
             KeyboardButton(type: .Key("^"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("*"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("+"), style: CustomKeyboardKeyButtonStyle),
-            KeyboardButton(type: .Key("="), style: CustomKeyboardRightKeyButtonStyle),
+            KeyboardButton(type: .Key("="), style: CustomKeyboardRightKeyButtonStyle)
           ]
         ),
         KeyboardRow(
@@ -495,7 +495,7 @@ public class CustomKeyboardLayout {
             KeyboardButton(type: .Key("€"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("£"), style: CustomKeyboardKeyButtonStyle),
             KeyboardButton(type: .Key("¥"), style: CustomKeyboardKeyButtonStyle),
-            KeyboardButton(type: .Key("•"), style: CustomKeyboardRightKeyButtonStyle),
+            KeyboardButton(type: .Key("•"), style: CustomKeyboardRightKeyButtonStyle)
           ]
         ),
         KeyboardRow(
@@ -513,7 +513,7 @@ public class CustomKeyboardLayout {
                 KeyboardButton(type: .Key(","), style: CustomKeyboardKeyButtonStyle),
                 KeyboardButton(type: .Key("?"), style: CustomKeyboardKeyButtonStyle),
                 KeyboardButton(type: .Key("!"), style: CustomKeyboardKeyButtonStyle),
-                KeyboardButton(type: .Key("'"), style: CustomKeyboardKeyButtonStyle),
+                KeyboardButton(type: .Key("'"), style: CustomKeyboardKeyButtonStyle)
               ]
             ),
             KeyboardButton(
@@ -523,7 +523,7 @@ public class CustomKeyboardLayout {
                 compatibleWithTraitCollection: nil)),
               style: CustomKeyboardBackspaceButtonStyle,
               width: .Relative(percent: 0.115),
-              identifier: CustomKeyboardIdentifier.Backspace.rawValue),
+              identifier: CustomKeyboardIdentifier.Backspace.rawValue)
           ]
         ),
         KeyboardRow(
@@ -550,9 +550,9 @@ public class CustomKeyboardLayout {
               type: .Text("return"),
               style: CustomKeyboardReturnButtonStyle,
               width: .Relative(percent: 0.18),
-              identifier: CustomKeyboardIdentifier.Return.rawValue),
+              identifier: CustomKeyboardIdentifier.Return.rawValue)
           ]
-        ),
+        )
       ]
     )
   }

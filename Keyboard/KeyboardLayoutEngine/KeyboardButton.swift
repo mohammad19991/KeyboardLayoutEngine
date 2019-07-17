@@ -168,7 +168,7 @@ public class KeyboardButton: UIView {
     super.layoutSubviews()
     var padding = CGFloat(0)
     applyShadow(shadow: style.shadow)
-    
+
     textLabel?.frame = CGRect(
       x: padding,
       y: padding + style.textOffsetY,
@@ -335,6 +335,6 @@ public class KeyboardButton: UIView {
   // MARK: Hit Test
   public override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
     let hitFrame = UIEdgeInsetsInsetRect(bounds, hitRangeInsets)
-    return CGRectContainsPoint(hitFrame, point)
+    return hitFrame.contains(point)
   }
 }

@@ -50,7 +50,7 @@ class KeyboardViewController: UIInputViewController, CustomKeyboardDelegate {
       customKeyboard.keyboardLayout.uppercaseToggled.getKeyboardButton(atRowIndex: 3, buttonIndex: 1),
       customKeyboard.keyboardLayout.lowercase.getKeyboardButton(atRowIndex: 3, buttonIndex: 1),
       customKeyboard.keyboardLayout.numbers.getKeyboardButton(atRowIndex: 3, buttonIndex: 1),
-      customKeyboard.keyboardLayout.symbols.getKeyboardButton(atRowIndex: 3, buttonIndex: 1),
+      customKeyboard.keyboardLayout.symbols.getKeyboardButton(atRowIndex: 3, buttonIndex: 1)
     ]
 
     let menuItemStyle =  KeyMenuItemStyle(
@@ -62,7 +62,7 @@ class KeyboardViewController: UIInputViewController, CustomKeyboardDelegate {
         items: [
           KeyMenuItem(title: "Switch Keyboard", style: menuItemStyle, action: { _ in self.advanceToNextInputMode() }),
           KeyMenuItem(title: "Settings", style: menuItemStyle, action: { _ in print("settings pressed") }),
-          KeyMenuItem(title: "About Us", style: menuItemStyle, action: { _ in print("about pressed") }),
+          KeyMenuItem(title: "About Us", style: menuItemStyle, action: { _ in print("about pressed") })
         ],
         style: KeyMenuStyle(itemSize: CGSize(width: 150, height: 40)),
         type: .Vertical)
