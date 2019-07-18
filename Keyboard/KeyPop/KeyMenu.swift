@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Shadow
 
 // MARK: - KeyMenuType
 public enum KeyMenuType {
@@ -17,8 +16,6 @@ public enum KeyMenuType {
 
 // MARK: - KeyMenuStyle
 public struct KeyMenuStyle {
-  // MARK: Shadow
-  public var shadow: Shadow?
 
   // MARK: Background Color
   public var backgroundColor: UIColor
@@ -33,14 +30,12 @@ public struct KeyMenuStyle {
 
   // MARK: Init
   public init(
-    shadow: Shadow? = nil,
     backgroundColor: UIColor? = nil,
     itemSize: CGSize? = nil,
     horizontalMenuItemPadding: CGFloat? = nil,
     horizontalMenuLeftPadding: CGFloat? = nil,
     horizontalMenuRightPadding: CGFloat? = nil) {
-    self.shadow = shadow
-    self.backgroundColor = backgroundColor ?? UIColor.whiteColor()
+    self.backgroundColor = backgroundColor ?? UIColor.white
     self.itemSize = itemSize ?? CGSize(width: 40, height: 40)
     self.horizontalMenuItemPadding = horizontalMenuItemPadding ?? 5
     self.horizontalMenuLeftPadding = horizontalMenuLeftPadding ?? 5
@@ -75,7 +70,7 @@ public class KeyMenu: UIView {
     self.type = type
 
     backgroundColor = style.backgroundColor
-    applyShadow(shadow: style.shadow)
+    //applyShadow(shadow: style.shadow)
 
     for item in items {
       addSubview(item)
@@ -128,7 +123,7 @@ public class KeyMenu: UIView {
       height: CGFloat(items.count) * style.itemSize.height)
 
     var currentY = CGFloat(0)
-    for (index, item) in items.enumerate() {
+    for (index, item) in items.enumerated() {
       if index == items.count - 1 {
         item.separator = nil
       }
@@ -144,8 +139,8 @@ public class KeyMenu: UIView {
   // MARK: Update Selection
   public func updateSelection(touchLocation location: CGPoint, inView view: UIView) {
     var tempIndex = -1
-    for (index, item) in items.enumerate() {
-      item.highlighted = CGRectContainsPoint(view.convertRect(item.frame, fromView: self), location)
+    for (index, item) in items.enumerated() {
+        item.highlighted = view.convert(item.frame, from: self).contains(location)
       if item.highlighted {
         tempIndex = index
       }

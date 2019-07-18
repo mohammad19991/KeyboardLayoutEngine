@@ -93,15 +93,15 @@ public class KeyboardRow: UIView {
   // MARK: Paddings
 
   func getLeadingPadding() -> CGFloat {
-    return isPortrait ? style.leadingPadding : style.leadingPaddingLandscape ?? style.leadingPadding
+    return isPortrait ? style.leadingPadding : style.leadingPaddingLandscape
   }
 
   func getTrailingPadding() -> CGFloat {
-    return isPortrait ? style.trailingPadding : style.trailingPaddingLandscape ?? style.trailingPadding
+    return isPortrait ? style.trailingPadding : style.trailingPaddingLandscape
   }
 
   func getButtonsPadding() -> CGFloat {
-    return isPortrait ? style.buttonsPadding : style.buttonsPaddingLandscape ?? style.buttonsPadding
+    return isPortrait ? style.buttonsPadding : style.buttonsPaddingLandscape
   }
 
   // MARK: Layout
@@ -114,7 +114,7 @@ public class KeyboardRow: UIView {
         character.frame = CGRect(
           x: currentX,
           y: 0,
-          width: getWidthForKeyboardButton(character),
+          width: getWidthForKeyboardButton(button: character),
           height: frame.size.height)
         currentX += character.frame.size.width + getButtonsPadding()
         // Set hit range
@@ -153,7 +153,7 @@ public class KeyboardRow: UIView {
     case .Static(let width):
       return width
     case .Relative(let percent):
-      return getRelativeWidthForPercent(percent)
+        return getRelativeWidthForPercent(percent: percent)
     }
   }
 
@@ -170,7 +170,7 @@ public class KeyboardRow: UIView {
         case .Static(let width):
           totalStaticWidthButtonsWidth += width
         case .Relative(let percent):
-          totalStaticWidthButtonsWidth += getRelativeWidthForPercent(percent)
+            totalStaticWidthButtonsWidth += getRelativeWidthForPercent(percent: percent)
           break
          }
       } else if let row = character as? KeyboardRow {
@@ -191,12 +191,12 @@ public class KeyboardRow: UIView {
   }
 
   // MARK: Hit Test
-  public override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-    if UIEdgeInsetsEqualToEdgeInsets(buttonHitRangeInsets, UIEdgeInsetsZero) {
-      return super.pointInside(point, withEvent: event)
+    public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if buttonHitRangeInsets == .zero {
+            return super.point(inside: point, with: event)
     }
 
-    let hitFrame = UIEdgeInsetsInsetRect(bounds, buttonHitRangeInsets)
+    let hitFrame = bounds.inset(by: buttonHitRangeInsets)
     return hitFrame.contains(point)
   }
 }

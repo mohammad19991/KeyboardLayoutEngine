@@ -10,7 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
-  override func viewDidLoad() {
+    @IBOutlet weak var textView: UITextView!
+    
+    override func viewDidLoad() {
+        textView.becomeFirstResponder()
     super.viewDidLoad()
   }
 }

@@ -10,12 +10,12 @@ import UIKit
 
 // MARK: - CustomKeyboardDelegate
 @objc public protocol CustomKeyboardDelegate {
-  optional func customKeyboard(customKeyboard: CustomKeyboard, keyboardButtonPressed keyboardButton: KeyboardButton)
-  optional func customKeyboard(customKeyboard: CustomKeyboard, keyButtonPressed key: String)
-  optional func customKeyboardSpaceButtonPressed(customKeyboard: CustomKeyboard)
-  optional func customKeyboardBackspaceButtonPressed(customKeyboard: CustomKeyboard)
-  optional func customKeyboardGlobeButtonPressed(customKeyboard: CustomKeyboard)
-  optional func customKeyboardReturnButtonPressed(customKeyboard: CustomKeyboard)
+  @objc optional func customKeyboard(customKeyboard: CustomKeyboard, keyboardButtonPressed keyboardButton: KeyboardButton)
+  @objc optional func customKeyboard(customKeyboard: CustomKeyboard, keyButtonPressed key: String)
+  @objc optional func customKeyboardSpaceButtonPressed(customKeyboard: CustomKeyboard)
+  @objc optional func customKeyboardBackspaceButtonPressed(customKeyboard: CustomKeyboard)
+  @objc optional func customKeyboardGlobeButtonPressed(customKeyboard: CustomKeyboard)
+  @objc optional func customKeyboardReturnButtonPressed(customKeyboard: CustomKeyboard)
 }
 
 // MARK: - CustomKeyboard
@@ -44,30 +44,28 @@ public class CustomKeyboard: UIView, KeyboardLayoutDelegate {
   }
 
   // MARK: Shift
-  public var shiftToggleInterval: NSTimeInterval = 0.5
-  private var shiftToggleTimer: NSTimer?
+  public var shiftToggleInterval: TimeInterval = 0.5
+  private var shiftToggleTimer: Timer?
 
   // MARK: Backspace
-  public var backspaceDeleteInterval: NSTimeInterval = 0.1
-  public var backspaceAutoDeleteModeInterval: NSTimeInterval = 0.5
-  private var backspaceDeleteTimer: NSTimer?
-  private var backspaceAutoDeleteModeTimer: NSTimer?
+  public var backspaceDeleteInterval: TimeInterval = 0.1
+  public var backspaceAutoDeleteModeInterval: TimeInterval = 0.5
+  private var backspaceDeleteTimer: Timer?
+  private var backspaceAutoDeleteModeTimer: Timer?
 
   // MARK: KeyMenu
   public var keyMenuLocked: Bool = false
-  public var keyMenuOpenTimer: NSTimer?
-  public var keyMenuOpenTimeInterval: NSTimeInterval = 1
+  public var keyMenuOpenTimer: Timer?
+  public var keyMenuOpenTimeInterval: TimeInterval = 1
   public var keyMenuShowingKeyboardButton: KeyboardButton? {
     didSet {
       oldValue?.showKeyPop(show: false)
       oldValue?.showKeyMenu(show: false)
       keyMenuShowingKeyboardButton?.showKeyPop(show: false)
       keyMenuShowingKeyboardButton?.showKeyMenu(show: true)
-      dispatch_after(
-        dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC))),
-        dispatch_get_main_queue()) { [weak self] in
-          self?.getCurrentKeyboardLayout().typingEnabled = self!.keyMenuShowingKeyboardButton == nil && self!.keyMenuLocked == false
-      }
+        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+            self.getCurrentKeyboardLayout().typingEnabled = self.keyMenuShowingKeyboardButton == nil && self.keyMenuLocked == false
+        })
     }
   }
 
@@ -140,7 +138,7 @@ public class CustomKeyboard: UIView, KeyboardLayoutDelegate {
     }
   }
 
-  public func keyboardLayoutStateDidChange(oldState oldState: CustomKeyboardLayoutState?, newState: CustomKeyboardLayoutState) {
+  public func keyboardLayoutStateDidChange(oldState: CustomKeyboardLayoutState?, newState: CustomKeyboardLayoutState) {
     // Remove old keyboard layout
     if let oldState = oldState {
       let oldKeyboardLayout = getKeyboardLayout(ofState: oldState)
@@ -176,8 +174,8 @@ public class CustomKeyboard: UIView, KeyboardLayoutDelegate {
 
   // MARK: Backspace Auto Delete
   private func startBackspaceAutoDeleteModeTimer() {
-    backspaceAutoDeleteModeTimer = NSTimer.scheduledTimerWithTimeInterval(
-      backspaceAutoDeleteModeInterval,
+    backspaceAutoDeleteModeTimer = Timer.scheduledTimer(
+        timeInterval: backspaceAutoDeleteModeInterval,
       target: self,
       selector: #selector(CustomKeyboard.startBackspaceAutoDeleteMode),
       userInfo: nil,
@@ -185,8 +183,8 @@ public class CustomKeyboard: UIView, KeyboardLayoutDelegate {
   }
 
   private func startBackspaceDeleteTimer() {
-    backspaceDeleteTimer = NSTimer.scheduledTimerWithTimeInterval(
-      backspaceDeleteInterval,
+    backspaceDeleteTimer = Timer.scheduledTimer(
+        timeInterval: backspaceDeleteInterval,
       target: self,
       selector: #selector(CustomKeyboard.autoDelete),
       userInfo: nil,
@@ -203,36 +201,36 @@ public class CustomKeyboard: UIView, KeyboardLayoutDelegate {
     backspaceDeleteTimer = nil
   }
 
-  internal func startBackspaceAutoDeleteMode() {
+    @objc internal func startBackspaceAutoDeleteMode() {
     invalidateBackspaceDeleteTimer()
     startBackspaceDeleteTimer()
   }
 
-  internal func autoDelete() {
-    delegate?.customKeyboardBackspaceButtonPressed?(self)
+    @objc internal func autoDelete() {
+    delegate?.customKeyboardBackspaceButtonPressed?(customKeyboard: self)
   }
 
   // MARK: Shift Toggle
   private func startShiftToggleTimer() {
-    shiftToggleTimer = NSTimer.scheduledTimerWithTimeInterval(
-      shiftToggleInterval,
+    shiftToggleTimer = Timer.scheduledTimer(
+        timeInterval: shiftToggleInterval,
       target: self,
       selector: #selector(CustomKeyboard.invalidateShiftToggleTimer),
       userInfo: nil,
       repeats: false)
   }
 
-  internal func invalidateShiftToggleTimer() {
+    @objc internal func invalidateShiftToggleTimer() {
     shiftToggleTimer?.invalidate()
     shiftToggleTimer = nil
   }
 
   // MARK: KeyMenu Toggle
   private func startKeyMenuOpenTimer(forKeyboardButton keyboardButton: KeyboardButton) {
-    keyMenuOpenTimer = NSTimer.scheduledTimerWithTimeInterval(
-      keyMenuOpenTimeInterval,
+    keyMenuOpenTimer = Timer.scheduledTimer(
+        timeInterval: keyMenuOpenTimeInterval,
       target: self,
-      selector: #selector(CustomKeyboard.openKeyMenu(_:)),
+      selector: #selector(CustomKeyboard.openKeyMenu),
       userInfo: keyboardButton,
       repeats: false)
   }
@@ -242,8 +240,8 @@ public class CustomKeyboard: UIView, KeyboardLayoutDelegate {
     keyMenuOpenTimer = nil
   }
 
-  public func openKeyMenu(timer: NSTimer) {
-    if let userInfo = timer.userInfo, keyboardButton = userInfo as? KeyboardButton {
+    @objc public func openKeyMenu(timer: Timer) {
+    if let userInfo = timer.userInfo, let keyboardButton = userInfo as? KeyboardButton {
       keyMenuShowingKeyboardButton = keyboardButton
     }
   }
@@ -272,32 +270,32 @@ public class CustomKeyboard: UIView, KeyboardLayoutDelegate {
   }
 
   public func keyboardLayout(keyboardLayout: KeyboardLayout, didKeyPressEnd keyboardButton: KeyboardButton) {
-    delegate?.customKeyboard?(self, keyboardButtonPressed: keyboardButton)
+    delegate?.customKeyboard?(customKeyboard: self, keyboardButtonPressed: keyboardButton)
 
     // If keyboard key is pressed notify no questions asked
     if case KeyboardButtonType.Key(let text) = keyboardButton.type {
-      delegate?.customKeyboard?(self, keyButtonPressed: text)
+        delegate?.customKeyboard?(customKeyboard: self, keyButtonPressed: text)
 
       // If shift state was CustomKeyboardShiftState.Once then make keyboard layout lowercase
-      if case CustomKeyboardLayoutState.Letters(let shiftState) = keyboardLayoutState where shiftState == CustomKeyboardShiftState.Once {
+        if case CustomKeyboardLayoutState.Letters(let shiftState) = keyboardLayoutState, shiftState == CustomKeyboardShiftState.Once {
         keyboardLayoutState = CustomKeyboardLayoutState.Letters(shiftState: .Off)
         return
       }
     }
 
     // Chcek special keyboard buttons
-    if let keyId = keyboardButton.identifier, identifier = CustomKeyboardIdentifier(rawValue: keyId) {
+    if let keyId = keyboardButton.identifier, let identifier = CustomKeyboardIdentifier(rawValue: keyId) {
       switch identifier {
 
       // Notify special keys
       case .Backspace:
-        delegate?.customKeyboardBackspaceButtonPressed?(self)
+        delegate?.customKeyboardBackspaceButtonPressed?(customKeyboard: self)
       case .Space:
-        delegate?.customKeyboardSpaceButtonPressed?(self)
+        delegate?.customKeyboardSpaceButtonPressed?(customKeyboard: self)
       case .Globe:
-        delegate?.customKeyboardGlobeButtonPressed?(self)
+        delegate?.customKeyboardGlobeButtonPressed?(customKeyboard: self)
       case .Return:
-        delegate?.customKeyboardReturnButtonPressed?(self)
+        delegate?.customKeyboardReturnButtonPressed?(customKeyboard: self)
 
       // Update keyboard layout state
       case .Letters:
@@ -334,15 +332,15 @@ public class CustomKeyboard: UIView, KeyboardLayoutDelegate {
 
   public func keyboardLayout(keyboardLayout: KeyboardLayout, didTouchesBegin touches: Set<UITouch>) {
     // KeyMenu
-    if let menu = keyMenuShowingKeyboardButton?.keyMenu, touch = touches.first {
-      menu.updateSelection(touchLocation: touch.locationInView(self), inView: self)
+    if let menu = keyMenuShowingKeyboardButton?.keyMenu, let touch = touches.first {
+        menu.updateSelection(touchLocation: touch.location(in: self), inView: self)
     }
   }
 
   public func keyboardLayout(keyboardLayout: KeyboardLayout, didTouchesMove touches: Set<UITouch>) {
     // KeyMenu
-    if let menu = keyMenuShowingKeyboardButton?.keyMenu, touch = touches.first {
-      menu.updateSelection(touchLocation: touch.locationInView(self), inView: self)
+    if let menu = keyMenuShowingKeyboardButton?.keyMenu, let touch = touches.first {
+        menu.updateSelection(touchLocation: touch.location(in: self), inView: self)
     }
   }
 
@@ -352,12 +350,12 @@ public class CustomKeyboard: UIView, KeyboardLayoutDelegate {
     invalidateKeyMenuOpenTimer()
 
     // KeyMenu
-    if let menu = keyMenuShowingKeyboardButton?.keyMenu, touch = touches?.first {
-      menu.updateSelection(touchLocation: touch.locationInView(self), inView: self)
+    if let menu = keyMenuShowingKeyboardButton?.keyMenu, let touch = touches?.first {
+        menu.updateSelection(touchLocation: touch.location(in: self), inView: self)
       // select item
       if menu.selectedIndex >= 0 {
         if let item = menu.items[safe: menu.selectedIndex] {
-          item.action?(keyMenuItem: item)
+            item.action?(item)
         }
         keyMenuShowingKeyboardButton = nil
         keyMenuLocked = false
@@ -378,12 +376,12 @@ public class CustomKeyboard: UIView, KeyboardLayoutDelegate {
     invalidateKeyMenuOpenTimer()
 
     // KeyMenu
-    if let menu = keyMenuShowingKeyboardButton?.keyMenu, touch = touches?.first {
-      menu.updateSelection(touchLocation: touch.locationInView(self), inView: self)
+    if let menu = keyMenuShowingKeyboardButton?.keyMenu, let touch = touches?.first {
+        menu.updateSelection(touchLocation: touch.location(in: self), inView: self)
       // select item
       if menu.selectedIndex >= 0 {
         if let item = menu.items[safe: menu.selectedIndex] {
-          item.action?(keyMenuItem: item)
+            item.action?(item)
         }
         keyMenuShowingKeyboardButton = nil
         keyMenuLocked = false
@@ -398,4 +396,14 @@ public class CustomKeyboard: UIView, KeyboardLayoutDelegate {
       }
     }
   }
+}
+
+extension Array {
+    public subscript(safe index: Int) -> Element? {
+        guard index >= 0, index < endIndex else {
+            return nil
+        }
+        
+        return self[index]
+    }
 }
